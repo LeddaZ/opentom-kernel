@@ -270,7 +270,7 @@ static int ts_ioctl(struct inode *inode, struct file *file, unsigned int cmd, un
 		break;
 	case TS_ENABLE:
 		// Enable handling of TS
-		adc_register_poll(ts_adc_poll, NULL );
+		adc_register_poll(ts_adc_poll, NULL, ADC_RATE_TS ); // CLM
 		ret = 0;
 		break;
 	case TS_DISABLE:
@@ -319,7 +319,7 @@ static int ts_probe(struct device *dev)
 	init_waitqueue_head(&ts_wait);
 
 	PK_DBG("Registering ADC pollfunc\n");
-	ret = adc_register_poll(ts_adc_poll, NULL );
+	ret = adc_register_poll(ts_adc_poll, NULL, ADC_RATE_TS ); // CLM
 	if (ret != 0) {
 		PK_ERR("Unable to register ADC pollfunc (%d)\n", ret);
 		return ret;

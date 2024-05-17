@@ -155,7 +155,7 @@ mep_bus_probe(struct device *dev)
 	}
 	
 #ifdef MEP_CONFIG_POLLED_MODE
-	ret = adc_register_poll(mep_bus_poll, NULL );
+	ret = adc_register_poll(mep_bus_poll, NULL, ADC_LRATE );
 	if (ret) {
 		dev_err(dev, "cannot register polling function\n");
 		goto error;

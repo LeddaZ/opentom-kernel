@@ -274,6 +274,12 @@ MODULE_PARM_DESC(host_addr, "Host Ethernet Address");
 #define DEV_CONFIG_CDC
 #endif
 
+// CLM START
+#ifdef CONFIG_USB_GADGET_S3C_FS
+#define DEV_CONFIG_CDC
+#endif
+// CLM END
+
 /*-------------------------------------------------------------------------*/
 
 /* "main" config is either CDC, or its simple subset */
@@ -2227,7 +2233,7 @@ eth_bind (struct usb_gadget *gadget)
 		device_desc.bcdDevice = __constant_cpu_to_le16 (0x0210);
 	} else if (gadget_is_pxa27x(gadget)) {
 		device_desc.bcdDevice = __constant_cpu_to_le16 (0x0211);
-	} else if (gadget_is_s3c2410(gadget)) {
+	} else if (gadget_is_s3c24xx(gadget)) { // CLM
 		device_desc.bcdDevice = __constant_cpu_to_le16 (0x0212);
 	} else if (gadget_is_at91(gadget)) {
 		device_desc.bcdDevice = __constant_cpu_to_le16 (0x0213);

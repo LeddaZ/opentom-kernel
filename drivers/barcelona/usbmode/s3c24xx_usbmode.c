@@ -301,6 +301,7 @@ void s3c2443_resurrect_phy(void)
 	s3c2443_usbd_enable();
 	s3c2443_usbh_enable();
 }
+EXPORT_SYMBOL(s3c2443_resurrect_phy);
 
 /* Function used when we use poll based USB_HOST_DETECT monitoring */
 int buspower_changed(struct notifier_block *self, unsigned long power_on,

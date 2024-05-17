@@ -456,7 +456,7 @@ static int pwm_probe(struct device *dev)
 	if (IO_HaveLightSensor())
 	{
 		PK_DBG("Registering ADC pollfunc\n");
-		ret = adc_register_poll(photosensor_adc_poll, NULL );
+		ret = adc_register_poll(photosensor_adc_poll, NULL, ADC_LRATE);
 		if (ret < 0) {
 			PK_ERR("Unable to register ADC pollfunc (%d)\n", ret);
 			return ret;

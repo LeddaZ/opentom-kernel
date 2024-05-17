@@ -61,7 +61,48 @@ static ssize_t usbmode_sysfs_read_mode(struct device *dev,
 
 /* define driver_attr_mode variable this will be used to define the "mode"
 entry in the sysfs*/
-static DEVICE_ATTR(mode, S_IWUGO | S_IRUGO, usbmode_sysfs_read_mode, NULL);
+// CLM static DEVICE_ATTR(mode, S_IWUGO | S_IRUGO, usbmode_sysfs_read_mode, NULL);
+// CLM START
+static ssize_t usbmode_sysfs_write_mode (struct device *dev, struct device_attribute *attr, const char *buff, size_t n);
+
+static DEVICE_ATTR(mode, S_IWUGO | S_IRUGO, usbmode_sysfs_read_mode, usbmode_sysfs_write_mode); // CLM
+static ssize_t 
+usbmode_sysfs_write_mode (struct device *dev, struct device_attribute *attr,
+						 const char *buff, size_t n) 
+{
+	struct usbmode_data *data = (struct usbmode_data *)dev->driver_data;
+	if ( data->usb_state == USB_STATE_HOST) {
+		printk("usbmode: Allready in host mode : arbort\n");
+		return n;
+	}
+	if (!strncmp(buff, "host", 4)) {
+		if ( (data->usb_state != USB_STATE_HOST_DETECT) && (data->usb_state != USB_STATE_CLA)) {
+			printk("usbmode: changind to host mode (from idle/device mode)\n");
+			if (data->u_ops->device_detect_to_host_detect(data)) {
+				printk("usbmode: changind to host mode (ERROR)\n");
+			}
+			return n;
+		}
+		data->usb_state = USB_STATE_HOST; // whe are in MODE_CLA then
+		printk("usbmode: changind to host mode\n");
+		if (data->u_ops->host_detect_to_host(data)) {
+			printk("usbmode: changind to host mode (ERROR)\n");
+		}
+	}
+/*	if (!strncmp(buff, "device", 6)) {
+		printk("usbmode: changind to device mode (do nothing)\n");
+	}*/
+	return n;
+	
+/*	ret = sscanf (buf, "%u", &freq);
+	if (ret != 1)
+		return -EINVAL;
+
+	cpufreq_set(freq, policy->cpu);
+
+	return count; */
+}
+// CLM END
 
 /*==== START change listener data code */
 /* data members for the change listener callback */

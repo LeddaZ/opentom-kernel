@@ -74,11 +74,13 @@
 #define	gadget_is_pxa27x(g)	0
 #endif
 
-#ifdef CONFIG_USB_GADGET_S3C
-#define gadget_is_s3c24xx(g)    (!strcmp("s3c-udc", (g)->name) || !strcmp("s3c-udc-hs", (g)->name))
+// CLM START
+#ifdef CONFIG_USB_GADGET_S3C_FS
+#define gadget_is_s3c24xx(g)    !strcmp("s3c24xx_udc", (g)->name)
 #else
 #define gadget_is_s3c24xx(g)    0
 #endif
+// CLM END
 
 #ifdef CONFIG_USB_GADGET_AT91
 #define gadget_is_at91(g)	!strcmp("at91_udc", (g)->name)

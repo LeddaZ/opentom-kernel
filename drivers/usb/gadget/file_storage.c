@@ -3747,7 +3747,7 @@ static int __init check_parameters(struct fsg_dev *fsg)
 			mod_data.release = 0x0310;
 		else if (gadget_is_pxa27x(fsg->gadget))
 			mod_data.release = 0x0311;
-		else if (gadget_is_s3c2410(gadget))
+		else if (gadget_is_s3c24xx(fsg->gadget)) // CLM
 			mod_data.release = 0x0312;
 		else if (gadget_is_at91(fsg->gadget))
 			mod_data.release = 0x0313;

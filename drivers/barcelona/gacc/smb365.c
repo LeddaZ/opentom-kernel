@@ -25,7 +25,7 @@
 #include <linux/interrupt.h>
 /* Include generic accelerometer interface definition	*/
 #include <barcelona/gacc.h>
-#include <barcelone/debug.h>
+#include <barcelona/debug.h>
 #define SMB365_READING_MEM_SIZE	(6) 	/* need to read 6 bytes to get x, y and z	*/
 #define SMB365_ADDR_READ		(0x80)		/* highest address bit indicates read or write	*/
 

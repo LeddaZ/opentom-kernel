@@ -27,6 +27,7 @@
 #include <asm/arch/regs-gpio.h>
 #include <asm/arch/regs-clock.h>
 #include <asm/arch/regs-udc.h>
+#include <asm/arch/io.h> // CLM
 #ifdef CONFIG_MACH_TOMTOMGO
 	#include <barcelona/gopins.h>
 #endif
