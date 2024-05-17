@@ -171,3 +171,29 @@ sphinx_*/
 
 # Rust analyzer configuration
 /rust-project.json
+include/asm
+arch/arm/boot/Image
+arch/arm/boot/zImage
+arch/arm/boot/compressed/vmlinux
+arch/arm/boot/compressed/vmlinux.lds
+arch/arm/kernel/vmlinux.lds
+include/asm-arm/arch
+include/asm-arm/constants.h
+include/asm-arm/mach-types.h
+include/linux/autoconf.h
+include/linux/compile.h
+include/linux/version.h
+lib/crc32table.h
+lib/gen_crc32table
+scripts/gen_initramfs_list.sh
+scripts/basic/docproc
+scripts/basic/fixdep
+scripts/basic/split-include
+scripts/kconfig/conf
+scripts/kconfig/lex.zconf.c
+scripts/mod/elfconfig.h
+scripts/mod/mk_elfconfig
+scripts/mod/modpost
+usr/gen_init_cpio
+usr/initramfs_data.cpio
+usr/initramfs_list
